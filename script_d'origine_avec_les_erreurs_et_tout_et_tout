@@ -1,0 +1,519 @@
+mysql> CREATE DATABASE `shoes_shop` DEFAULT CHARACTER SET = `utf8`;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| filmotheque        |
+| mysql              |
+| performance_schema |
+| shoes_shop         |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use shoes_shop;
+Database changed
+mysql> CREATE TABLE `genre` (
+    ->   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    ->   `nom` varchar(255) NOT NULL DEFAULT '',
+    ->   PRIMARY KEY (`id`),
+    ->   UNIQUE KEY `nom` (`nom`)
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+    -> ;
+Query OK, 0 rows affected (0.42 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_shoes_shop |
++----------------------+
+| genre                |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> drop table genre;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> c
+mysql> ;
+ERROR: 
+No query specified
+
+mysql> use shoes_shop
+Database changed
+mysql> CREATE TABLE `client` (`id` int(11) unsigned NOT NULL AUTO_INCREMENT, `nom` varchar(255) NOT NULL DEFAULT '', `prenom` varchar(255) NOT NULL DEFAULT '', `email` varchar(255) NOT NULL DEFAULT '', PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
+Query OK, 0 rows affected (0.24 sec)
+
+mysql> describe client;
++--------+------------------+------+-----+---------+----------------+
+| Field  | Type             | Null | Key | Default | Extra          |
++--------+------------------+------+-----+---------+----------------+
+| id     | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| nom    | varchar(255)     | NO   |     |         |                |
+| prenom | varchar(255)     | NO   |     |         |                |
+| email  | varchar(255)     | NO   |     |         |                |
++--------+------------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE `adresse` (`id` int(11) unsigned NOT NULL AUTO_INCREMENT, `numero_de_rue` int(11) unsigned NOT NULL, `nom_de_la_voie` varchar(255) NOT NULL DEFAULT '', `complement_d_adresse` varchar(255) NOT NULL DEFAULT '', `code_postal` int(11) unsigned NOT NULL, `ville` varchar(255) NOT NULL DEFAULT '', `pays` varchar(255) NOT NULL DEFAULT '', PRIMARY KEY (`id`)
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+Query OK, 0 rows affected (0.23 sec)
+
+mysql> describe adresse;
++----------------------+------------------+------+-----+---------+----------------+
+| Field                | Type             | Null | Key | Default | Extra          |
++----------------------+------------------+------+-----+---------+----------------+
+| id                   | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| numero_de_rue        | int(11) unsigned | NO   |     | NULL    |                |
+| nom_de_la_voie       | varchar(255)     | NO   |     |         |                |
+| complement_d_adresse | varchar(255)     | NO   |     |         |                |
+| code_postal          | int(11) unsigned | NO   |     | NULL    |                |
+| ville                | varchar(255)     | NO   |     |         |                |
+| pays                 | varchar(255)     | NO   |     |         |                |
++----------------------+------------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_shoes_shop |
++----------------------+
+| adresse              |
+| client               |
++----------------------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE `genre` (
+    ->   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    ->   `nom` varchar(255) NOT NULL DEFAULT '',
+    ->   PRIMARY KEY (`id`),
+    ->   UNIQUE KEY `nom` (`nom`)
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+    -> ;
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> drop table genre;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_shoes_shop |
++----------------------+
+| adresse              |
+| client               |
++----------------------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE `genre` (
+    ->   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    -> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show tables' at line 3
+mysql> show tables;
++----------------------+
+| Tables_in_shoes_shop |
++----------------------+
+| adresse              |
+| client               |
++----------------------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE `marque` ( `id` int(11) unsigned NOT NULL AUTO_INCREMENT, `nom` varchar(255) NOT NULL DEFAULT '', PRIMARY KEY (`id`), UNIQUE KEY `nom` (`nom`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+Query OK, 0 rows affected (0.27 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_shoes_shop |
++----------------------+
+| adresse              |
+| client               |
+| marque               |
++----------------------+
+3 rows in set (0.00 sec)
+
+mysql> describe marque;
++-------+------------------+------+-----+---------+----------------+
+| Field | Type             | Null | Key | Default | Extra          |
++-------+------------------+------+-----+---------+----------------+
+| id    | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| nom   | varchar(255)     | NO   | UNI |         |                |
++-------+------------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE `couleurs` (`id` int(11) unsigned NOT NULL AUTO_INCREMENT, `couleur` varchar(255) NOT NULL DEFAULT '', PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+Query OK, 0 rows affected (0.25 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_shoes_shop |
++----------------------+
+| adresse              |
+| client               |
+| couleurs             |
+| marque               |
++----------------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE `modele` (`id` int(11) unsigned NOT NULL AUTO_INCREMENT, `genre` varchar(255) NOT NULL DEFAULT '', `type` varchar(255) NOT NULL DEFAULT '', PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+Query OK, 0 rows affected (0.23 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_shoes_shop |
++----------------------+
+| adresse              |
+| client               |
+| couleurs             |
+| marque               |
+| modele               |
++----------------------+
+5 rows in set (0.01 sec)
+
+mysql> describe modele;
++-------+------------------+------+-----+---------+----------------+
+| Field | Type             | Null | Key | Default | Extra          |
++-------+------------------+------+-----+---------+----------------+
+| id    | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| genre | varchar(255)     | NO   |     |         |                |
+| type  | varchar(255)     | NO   |     |         |                |
++-------+------------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE `pointure` (`id` int(11) unsigned NOT NULL AUTO_INCREMENT, `taille` int(11) unsigned NOT NULL, PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+Query OK, 0 rows affected (0.24 sec)
+
+mysql> describe pointure;
++--------+------------------+------+-----+---------+----------------+
+| Field  | Type             | Null | Key | Default | Extra          |
++--------+------------------+------+-----+---------+----------------+
+| id     | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| taille | int(11) unsigned | NO   |     | NULL    |                |
++--------+------------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE `chaussure` (`id` int(11) unsigned NOT NULL AUTO_INCREMENT, `designation` varchar(255) NOT NULL DEFAULT '', `prix` int(11) unsigned NOT NULL, PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> describe chaussure;
++-------------+------------------+------+-----+---------+----------------+
+| Field       | Type             | Null | Key | Default | Extra          |
++-------------+------------------+------+-----+---------+----------------+
+| id          | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| designation | varchar(255)     | NO   |     |         |                |
+| prix        | int(11) unsigned | NO   |     | NULL    |                |
++-------------+------------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE chaussure ADD `id_marque` INT NOT NULL;
+Query OK, 0 rows affected (0.40 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe chaussure;
++-------------+------------------+------+-----+---------+----------------+
+| Field       | Type             | Null | Key | Default | Extra          |
++-------------+------------------+------+-----+---------+----------------+
+| id          | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| designation | varchar(255)     | NO   |     |         |                |
+| prix        | int(11) unsigned | NO   |     | NULL    |                |
+| id_marque   | int(11)          | NO   |     | NULL    |                |
++-------------+------------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE chaussure ADD CONSTRAINT `fk_marque` FOREIGN KEY (id_marque) REFERENCES marque(ID);
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> ALTER TABLE chaussure ADD CONSTRAINT `fk_marque_id` FOREIGN KEY (id_marque) REFERENCES marque(ID);
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> ALTER TABLE chaussure ADD CONSTRAINT `fk_marque` FOREIGN KEY (`id_marque`) REFERENCES marque(ID);
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> ALTER TABLE nom_table
+    -> DROP nom_colonne;
+ERROR 1146 (42S02): Table 'shoes_shop.nom_table' doesn't exist
+mysql> ALTER TABLE chaussure DROP id_marque;
+Query OK, 0 rows affected (0.42 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe chaussure;
++-------------+------------------+------+-----+---------+----------------+
+| Field       | Type             | Null | Key | Default | Extra          |
++-------------+------------------+------+-----+---------+----------------+
+| id          | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| designation | varchar(255)     | NO   |     |         |                |
+| prix        | int(11) unsigned | NO   |     | NULL    |                |
++-------------+------------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE chaussure ADD `id_marque` INT(11) unsigned NOT NULL;Query OK, 0 rows affected (0.41 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe chaussure;
++-------------+------------------+------+-----+---------+----------------+
+| Field       | Type             | Null | Key | Default | Extra          |
++-------------+------------------+------+-----+---------+----------------+
+| id          | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| designation | varchar(255)     | NO   |     |         |                |
+| prix        | int(11) unsigned | NO   |     | NULL    |                |
+| id_marque   | int(11) unsigned | NO   |     | NULL    |                |
++-------------+------------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE chaussure ADD CONSTRAINT `fk_marque` FOREIGN KEY (`id_marque`) REFERENCES marque(ID);
+Query OK, 0 rows affected (0.62 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe chaussure;
++-------------+------------------+------+-----+---------+----------------+
+| Field       | Type             | Null | Key | Default | Extra          |
++-------------+------------------+------+-----+---------+----------------+
+| id          | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| designation | varchar(255)     | NO   |     |         |                |
+| prix        | int(11) unsigned | NO   |     | NULL    |                |
+| id_marque   | int(11) unsigned | NO   | MUL | NULL    |                |
++-------------+------------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE chaussure ADD `id_modele` INT(11) unsigned NOT NULL;
+Query OK, 0 rows affected (0.59 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE chaussure ADD CONSTRAINT `fk_modele` FOREIGN KEY (`id_modele`) REFERENCES modele(ID);
+Query OK, 0 rows affected (0.86 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe chaussure;
++-------------+------------------+------+-----+---------+----------------+
+| Field       | Type             | Null | Key | Default | Extra          |
++-------------+------------------+------+-----+---------+----------------+
+| id          | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| designation | varchar(255)     | NO   |     |         |                |
+| prix        | int(11) unsigned | NO   |     | NULL    |                |
+| id_marque   | int(11) unsigned | NO   | MUL | NULL    |                |
+| id_modele   | int(11) unsigned | NO   | MUL | NULL    |                |
++-------------+------------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> ALTER TABLE chaussure ADD `id_pointure` INT(11) unsigned NOT NULL;
+Query OK, 0 rows affected (0.63 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE chaussure ADD CONSTRAINT `fk_pointure` FOREIGN KEY (`id_pointure`) REFERENCES pointure(ID);
+Query OK, 0 rows affected (0.75 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe chaussure;
++-------------+------------------+------+-----+---------+----------------+
+| Field       | Type             | Null | Key | Default | Extra          |
++-------------+------------------+------+-----+---------+----------------+
+| id          | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| designation | varchar(255)     | NO   |     |         |                |
+| prix        | int(11) unsigned | NO   |     | NULL    |                |
+| id_marque   | int(11) unsigned | NO   | MUL | NULL    |                |
+| id_modele   | int(11) unsigned | NO   | MUL | NULL    |                |
+| id_pointure | int(11) unsigned | NO   | MUL | NULL    |                |
++-------------+------------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> CREATE TABLE `couleur_chaussure` (`id_chaussure` INT(11) unsigned NOT NULL, `id_pointure` INT(11) unsigned NOT NULL);
+Query OK, 0 rows affected (0.25 sec)
+
+mysql> ALTER TABLE `couleur_chaussure` ADD CONSTRAINT `fk_cc_from_chaussure` FOREIGN KEY (`id_chaussure`) REFERENCES chaussure(ID);
+Query OK, 0 rows affected (0.63 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE `couleur_chaussure` CHANGE `id_pointure` `id_couleur` INT(11) unsigned NOT NULL;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe couleur_chaussure;
++--------------+------------------+------+-----+---------+-------+
+| Field        | Type             | Null | Key | Default | Extra |
++--------------+------------------+------+-----+---------+-------+
+| id_chaussure | int(11) unsigned | NO   | MUL | NULL    |       |
+| id_couleur   | int(11) unsigned | NO   |     | NULL    |       |
++--------------+------------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE `couleur_chaussure` ADD CONSTRAINT `fk_cc_from_couleur` FOREIGN KEY (`id_couleur`) REFERENCES couleur(ID);
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> describe couleur;
+ERROR 1146 (42S02): Table 'shoes_shop.couleur' doesn't exist
+mysql> show tables;
++----------------------+
+| Tables_in_shoes_shop |
++----------------------+
+| adresse              |
+| chaussure            |
+| client               |
+| couleur_chaussure    |
+| couleurs             |
+| marque               |
+| modele               |
+| pointure             |
++----------------------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE `couleur_chaussure` ADD CONSTRAINT `fk_cc_from_couleur` FOREIGN KEY (`id_couleur`) REFERENCES couleurs(ID);
+Query OK, 0 rows affected (0.81 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe couleur;                                                              ERROR 1146 (42S02): Table 'shoes_shop.couleur' doesn't exist
+mysql> describe couleur_chaussure;                                                    +--------------+------------------+------+-----+---------+-------+
+| Field        | Type             | Null | Key | Default | Extra |
++--------------+------------------+------+-----+---------+-------+
+| id_chaussure | int(11) unsigned | NO   | MUL | NULL    |       |
+| id_couleur   | int(11) unsigned | NO   | MUL | NULL    |       |
++--------------+------------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> describe couleurs;
++---------+------------------+------+-----+---------+----------------+
+| Field   | Type             | Null | Key | Default | Extra          |
++---------+------------------+------+-----+---------+----------------+
+| id      | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| couleur | varchar(255)     | NO   |     |         |                |
++---------+------------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE `couleur_chaussure` ADD CONSTRAINT `pk_couleur_shoes` PRIMARY KEY (`id_couleur`, `id_chaussure`);
+Query OK, 0 rows affected (0.52 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe couleur_chaussure;                                                    +--------------+------------------+------+-----+---------+-------+
+| Field        | Type             | Null | Key | Default | Extra |
++--------------+------------------+------+-----+---------+-------+
+| id_chaussure | int(11) unsigned | NO   | PRI | NULL    |       |
+| id_couleur   | int(11) unsigned | NO   | PRI | NULL    |       |
++--------------+------------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE `adresse_client` (`id_client` INT(11) unsigned NOT NULL, `id_adresse` INT(11) unsigned NOT NULL);
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> ALTER TABLE `adresse_client` ADD CONSTRAINT `fk_cc_from_client` FOREIGN KEY (`id_client`) REFERENCES client(ID);
+Query OK, 0 rows affected (0.64 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE `adresse_client` ADD CONSTRAINT `fk_cc_from_adresse` FOREIGN KEY (`id_adresse`) REFERENCES adresse(ID);
+Query OK, 0 rows affected (0.84 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe adresse_client;
++------------+------------------+------+-----+---------+-------+
+| Field      | Type             | Null | Key | Default | Extra |
++------------+------------------+------+-----+---------+-------+
+| id_client  | int(11) unsigned | NO   | MUL | NULL    |       |
+| id_adresse | int(11) unsigned | NO   | MUL | NULL    |       |
++------------+------------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE `adresse_client` ADD CONSTRAINT `pk_adresse_client` PRIMARY KEY (`id_client`, `id_adresse`);
+Query OK, 0 rows affected (1.30 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe adresse_client;                                                       +------------+------------------+------+-----+---------+-------+
+| Field      | Type             | Null | Key | Default | Extra |
++------------+------------------+------+-----+---------+-------+
+| id_client  | int(11) unsigned | NO   | PRI | NULL    |       |
+| id_adresse | int(11) unsigned | NO   | PRI | NULL    |       |
++------------+------------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_shoes_shop |
++----------------------+
+| adresse              |
+| adresse_client       |
+| chaussure            |
+| client               |
+| couleur_chaussure    |
+| couleurs             |
+| marque               |
+| modele               |
+| pointure             |
++----------------------+
+9 rows in set (0.00 sec)
+
+mysql> CREATE TABLE `commande` (`id` int(11) unsigned NOT NULL AUTO_INCREMENT, `clien_id` int;
+ERROR: 
+No query specified
+
+mysql> CREATE TABLE `commande` (`id` int(11) unsigned NOT NULL AUTO_INCREMENT, `client_id` int(11) unsigned NOT NULL, PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+Query OK, 0 rows affected (0.30 sec)
+
+mysql> describe commande;
++-----------+------------------+------+-----+---------+----------------+
+| Field     | Type             | Null | Key | Default | Extra          |
++-----------+------------------+------+-----+---------+----------------+
+| id        | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| client_id | int(11) unsigned | NO   |     | NULL    |                |
++-----------+------------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> ALTER TABLE `commande` ADD CONSTRAINT `fk_client_for_order` FOREIGN KEY (`client_id`) REFERENCES client(ID);
+Query OK, 0 rows affected (0.66 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe commande;                                                             +-----------+------------------+------+-----+---------+----------------+
+| Field     | Type             | Null | Key | Default | Extra          |
++-----------+------------------+------+-----+---------+----------------+
+| id        | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| client_id | int(11) unsigned | NO   | MUL | NULL    |                |
++-----------+------------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE `commande_chaussure` (`id_commande` INT(11) unsigned NOT NULL, `id_chaussures` INT(11) unsigned NOT NULL);
+Query OK, 0 rows affected (0.25 sec)
+
+mysql> ALTER TABLE `commande_chaussure` ADD CONSTRAINT `fk_com_chauss_fromcommande` FOREIGN KEY (`id_commande`) REFERENCES adresse(ID);
+Query OK, 0 rows affected (0.75 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE `commande_chaussure` ADD CONSTRAINT `fk_com_chauss_from_chaussure_for_commande` FOREIGN KEY (`id_chaussures`) REFERENCES chaussures(ID);
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> ALTER TABLE `commande_chaussure` ADD CONSTRAINT `fk_com_chauss_from_chaussure_for_commande` FOREIGN KEY (`id_chaussures`) REFERENCES chaussure(ID);
+Query OK, 0 rows affected (0.73 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe commande_chaussure;
++---------------+------------------+------+-----+---------+-------+
+| Field         | Type             | Null | Key | Default | Extra |
++---------------+------------------+------+-----+---------+-------+
+| id_commande   | int(11) unsigned | NO   | MUL | NULL    |       |
+| id_chaussures | int(11) unsigned | NO   | MUL | NULL    |       |
++---------------+------------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE `commande_chaussure` ADD CONSTRAINT `pk_commande_chaussure` PRIMARY KEY (`id_commande`, `id_chaussures`);
+Query OK, 0 rows affected (0.47 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe commande_chaussure;                                                   +---------------+------------------+------+-----+---------+-------+
+| Field         | Type             | Null | Key | Default | Extra |
++---------------+------------------+------+-----+---------+-------+
+| id_commande   | int(11) unsigned | NO   | PRI | NULL    |       |
+| id_chaussures | int(11) unsigned | NO   | PRI | NULL    |       |
++---------------+------------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_shoes_shop |
++----------------------+
+| adresse              |
+| adresse_client       |
+| chaussure            |
+| client               |
+| commande             |
+| commande_chaussure   |
+| couleur_chaussure    |
+| couleurs             |
+| marque               |
+| modele               |
+| pointure             |
++----------------------+
+11 rows in set (0.00 sec)
+
+
